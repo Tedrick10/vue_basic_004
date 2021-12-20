@@ -20,10 +20,21 @@
       <h2>My course goals</h2>
       <input type="text" v-model="enteredGoalValue" />
       <button @click="enteredGoal()">Add Goal</button>
-      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
-      <ul v-else>
-        <li>Goal</li>
+      <p v-show="goals.length === 0">No goals have been added yet - please start adding some!</p>
+      <ul v-show="goals.length > 0">
+        <li v-for="(goal, index) in goals" @click="removedGoal(index)" :key="index">
+          <p>{{ index +1 }}. {{ goal }}</p>
+          <input type="text" @click.stop/>
+        </li>
       </ul>
+
+      <!-- <ul>
+        <li v-for="(value, key, index) in information">{{ index + 1 }}. {{ key }}: {{ value }}</li>
+      </ul> -->
+
+      <!-- <ul>
+        <li v-for="num in 10">{{ num }}</li>
+      </ul> -->
     </section>
   </body>
 </html>
